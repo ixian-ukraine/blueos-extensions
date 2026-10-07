@@ -1,1 +1,120 @@
-[]
+[
+  {
+    "identifier": "ixian-ukraine.mediamtx",
+    "name": "MediaMTX (Ixian)",
+    "website": "https://github.com/ixian-ukraine/blueos-extension-mediamtx",
+    "docker": "ghcr.io/ixian-ukraine/blueos-extension-mediamtx",
+    "description": "RTSP camera relay, WebRTC grid viewer, and configuration editor for BlueOS.",
+    "versions": {
+      "2.1.0": {
+        "tag": "2.1.0",
+        "type": "other",
+        "authors": [
+          {
+            "name": "Willian Galvani",
+            "email": "willian@bluerobotics.com"
+          }
+        ],
+        "company": {
+          "about": "Ixian-maintained build of the BlueOS MediaMTX extension",
+          "name": "Ixian Ukraine"
+        },
+        "filter_tags": [
+          "communication"
+        ],
+        "extra_links": {
+          "website": "https://github.com/ixian-ukraine/blueos-extension-mediamtx",
+          "support": "https://github.com/ixian-ukraine/blueos-extension-mediamtx/issues"
+        },
+        "website": "https://github.com/ixian-ukraine/blueos-extension-mediamtx",
+        "support": "https://github.com/ixian-ukraine/blueos-extension-mediamtx/issues",
+        "readme": "<p>RTSP camera relay, WebRTC grid viewer, and configuration editor for BlueOS.</p><p><a href=\"https://github.com/ixian-ukraine/blueos-extension-mediamtx/blob/2.1.0/README.md\">Installation and usage documentation</a></p>",
+        "requirements": "core >= 1.1",
+        "permissions": {
+          "HostConfig": {
+            "Privileged": true,
+            "NetworkMode": "host",
+            "Binds": [
+              "/usr/blueos/extensions/mediamtx:/usr/blueos/extensions/mediamtx"
+            ]
+          }
+        },
+        "images": [
+          {
+            "platform": {
+              "architecture": "arm64",
+              "os": "linux"
+            },
+            "digest": "sha256:089a696358d3458dc80587f708ef8b1a545bde71c1ef7c3b9980f421735a1168",
+            "expanded_size": 241520839
+          }
+        ]
+      }
+    }
+  },
+  {
+    "identifier": "ixian-ukraine.netbird",
+    "name": "NetBird VPN",
+    "website": "https://github.com/ixian-ukraine/blueos-extension-netbird",
+    "docker": "ghcr.io/ixian-ukraine/blueos-extension-netbird",
+    "description": "NetBird WireGuard mesh VPN connectivity for BlueOS, with cloud and self-hosted management support.",
+    "versions": {
+      "0.74.7": {
+        "tag": "0.74.7",
+        "type": "other",
+        "authors": [
+          {
+            "name": "Pinnokio",
+            "email": "pinnokio@users.noreply.github.com"
+          }
+        ],
+        "company": {
+          "about": "NetBird VPN integration for BlueOS",
+          "name": "Ixian Ukraine"
+        },
+        "filter_tags": [
+          "communication"
+        ],
+        "extra_links": {
+          "website": "https://github.com/ixian-ukraine/blueos-extension-netbird",
+          "support": "https://github.com/ixian-ukraine/blueos-extension-netbird/issues"
+        },
+        "website": "https://github.com/ixian-ukraine/blueos-extension-netbird",
+        "support": "https://github.com/ixian-ukraine/blueos-extension-netbird/issues",
+        "readme": "<p>NetBird WireGuard mesh VPN connectivity for BlueOS, with cloud and self-hosted management support.</p><p><a href=\"https://github.com/ixian-ukraine/blueos-extension-netbird/blob/0.74.7/README.md\">Installation and usage documentation</a></p>",
+        "requirements": "core >= 1.1",
+        "permissions": {
+          "NetworkMode": "host",
+          "HostConfig": {
+            "Privileged": true,
+            "NetworkMode": "host",
+            "CapAdd": [
+              "SYS_ADMIN",
+              "NET_ADMIN"
+            ],
+            "Binds": [
+              "/usr/blueos/extensions/nb-vpn:/var/lib/netbird"
+            ],
+            "Devices": [
+              {
+                "PathOnHost": "/dev/net/tun",
+                "PathInContainer": "/dev/net/tun",
+                "CgroupPermissions": "rwm"
+              }
+            ]
+          }
+        },
+        "images": [
+          {
+            "platform": {
+              "architecture": "arm64",
+              "os": "linux"
+            },
+            "digest": "sha256:249c2bfde9cd88a77f201248c1db2d8340d134698a1ebe9f30993d70a884407f",
+            "expanded_size": 228802473
+          }
+        ]
+      }
+    }
+  }
+]
