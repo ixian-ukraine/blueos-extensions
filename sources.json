@@ -1,0 +1,10 @@
+[
+  {
+    "repository": "ixian-ukraine/blueos-extension-mediamtx",
+    "identifier": "ixian-ukraine.mediamtx"
+  },
+  {
+    "repository": "ixian-ukraine/blueos-extension-netbird",
+    "identifier": "ixian-ukraine.netbird"
+  }
+]
