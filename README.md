@@ -17,6 +17,7 @@ Apply the settings, then select an extension in the store:
 | --- | --- | --- | --- |
 | MediaMTX (Ixian) | `ixian-ukraine.mediamtx` | [Source](https://github.com/ixian-ukraine/blueos-extension-mediamtx) | `ghcr.io/ixian-ukraine/blueos-extension-mediamtx` |
 | NetBird VPN | `ixian-ukraine.netbird` | [Source](https://github.com/ixian-ukraine/blueos-extension-netbird) | `ghcr.io/ixian-ukraine/blueos-extension-netbird` |
+| ZeroTier (Ixian) | `ixian-ukraine.zerotier` | [Source](https://github.com/ixian-ukraine/blueos-extension-zerotier) | `ghcr.io/ixian-ukraine/blueos-extension-zerotier` |
 
 Supported platform: **Linux ARM64** (64-bit BlueOS). The catalog does not advertise
 ARMv7 or AMD64 images. BlueOS may cache manifest downloads for one hour.
@@ -24,6 +25,12 @@ ARMv7 or AMD64 images. BlueOS may cache manifest downloads for one hour.
 Existing manually installed extensions must use the same identifier to receive
 catalog updates. MediaMTX shares its ports and persistent directory with the
 upstream extension; stop the existing instance before switching to this build.
+
+ZeroTier also reuses the upstream extension's ports and persistent directory
+(`/usr/blueos/extensions/zerotier`) to retain its node identity and network
+memberships. Disable the upstream instance before installing **ZeroTier (Ixian)**.
+Use a local connection or another VPN for the switch, since stopping ZeroTier
+interrupts its connection.
 
 ## Release process
 
