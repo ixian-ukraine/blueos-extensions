@@ -75,9 +75,28 @@ jobs:
           if [[ "$WEB_PORT" == 8908 ]]; then
             docker exec extension-smoke /app/mediamtx --version
             curl --fail --silent --show-error http://127.0.0.1:18080/api/paths | python3 -m json.tool
-          else
+          elif [[ "$WEB_PORT" == 9132 ]]; then
             docker exec extension-smoke netbird version
             docker exec extension-smoke netbird status --check live
+          elif [[ "$WEB_PORT" == 9131 ]]; then
+            test "$(docker exec extension-smoke zerotier-one -v)" = "${TAG#v}"
+            docker exec extension-smoke zerotier-cli info
+            docker exec extension-smoke bash /healthcheck.sh
+            curl --fail --silent --show-error \
+              http://127.0.0.1:18080/v1.0/command/networks | \
+              python3 -c 'import json, sys; networks = json.load(sys.stdin); assert isinstance(json.loads(networks), list)'
+            node_id=$(docker exec extension-smoke zerotier-cli -j info | \
+              python3 -c 'import json, sys; print(json.load(sys.stdin)["address"])')
+            docker restart extension-smoke
+            curl --fail --silent --show-error --retry 30 --retry-all-errors \
+              --retry-delay 2 --max-time 5 \
+              http://127.0.0.1:18080/register_service > /dev/null
+            restored_id=$(docker exec extension-smoke zerotier-cli -j info | \
+              python3 -c 'import json, sys; print(json.load(sys.stdin)["address"])')
+            test "$node_id" = "$restored_id"
+          else
+            echo "No daemon smoke test is configured for port $WEB_PORT" >&2
+            exit 1
           fi
       - name: Push image and generate release metadata
         env:
