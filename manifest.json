@@ -116,5 +116,71 @@
         ]
       }
     }
+  },
+  {
+    "identifier": "ixian-ukraine.zerotier",
+    "name": "ZeroTier (Ixian)",
+    "website": "https://github.com/ixian-ukraine/blueos-extension-zerotier",
+    "docker": "ghcr.io/ixian-ukraine/blueos-extension-zerotier",
+    "description": "ZeroTier VPN connectivity and network management for BlueOS.",
+    "versions": {
+      "1.16.2": {
+        "tag": "1.16.2",
+        "type": "other",
+        "authors": [
+          {
+            "name": "Willian Galvani",
+            "email": "willian@bluerobotics.com"
+          }
+        ],
+        "company": {
+          "about": "Ixian-maintained ZeroTier integration for BlueOS",
+          "name": "Ixian Ukraine"
+        },
+        "filter_tags": [
+          "communication"
+        ],
+        "extra_links": {
+          "website": "https://github.com/ixian-ukraine/blueos-extension-zerotier",
+          "support": "https://github.com/ixian-ukraine/blueos-extension-zerotier/issues"
+        },
+        "website": "https://github.com/ixian-ukraine/blueos-extension-zerotier",
+        "support": "https://github.com/ixian-ukraine/blueos-extension-zerotier/issues",
+        "readme": "<p>ZeroTier VPN connectivity and network management for BlueOS.</p><p><a href=\"https://github.com/ixian-ukraine/blueos-extension-zerotier/blob/1.16.2/README.md\">Installation and usage documentation</a></p>",
+        "requirements": "core >= 1.1",
+        "permissions": {
+          "NetworkMode": "host",
+          "HostConfig": {
+            "Privileged": true,
+            "NetworkMode": "host",
+            "CapAdd": [
+              "SYS_ADMIN",
+              "NET_ADMIN"
+            ],
+            "Binds": [
+              "/usr/blueos/extensions/zerotier:/var/lib/zerotier-one",
+              "/var/lib/zerotier-one:/old-settings"
+            ],
+            "Devices": [
+              {
+                "PathOnHost": "/dev/net/tun",
+                "PathInContainer": "/dev/net/tun",
+                "CgroupPermissions": "rwm"
+              }
+            ]
+          }
+        },
+        "images": [
+          {
+            "platform": {
+              "architecture": "arm64",
+              "os": "linux"
+            },
+            "digest": "sha256:69cc4fb8b7ea50266415376ebdadc9b3f489346110da998e95e5d665017fc357",
+            "expanded_size": 193259735
+          }
+        ]
+      }
+    }
   }
 ]
